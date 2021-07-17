@@ -43,14 +43,14 @@ function setup() {
   //top
   block16 = new Block(390,155,30,40);
 
-polygon = bodies.circle(50,200,20);
+polygon = Bodies.circle(50,200,50);
 World.add(world,polygon);
   
-
+slingshot = new Slingshot(this.polygon,{x:100,y:200})
 }
 function draw() {
   background(56,44,44); 
- 
+ image(polygon_img,this.polygon.position.x,this.polygon.position.y,50,50)
   textSize(20);
   fill("lightyellow");
   
@@ -80,6 +80,13 @@ function draw() {
   block15.display();
   fill("grey");
   block16.display();
- 
+ slingshot.display();
 
 }
+function mouseDragged () {
+  Matter.Body.setPosition(this.polygon,{x:mouseX,y:mouseY})
+}
+
+function mouseRealesed (){
+  slingshot.fly();
+} 
